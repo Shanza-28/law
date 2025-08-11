@@ -59,6 +59,47 @@
       text-transform: uppercase;
       letter-spacing: 1.2px;
     }
+  .menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  transition: max-height 0.4s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background-color: #1c1c1c;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    z-index: 999;
+  }
+
+  .nav-links.show {
+    max-height: 500px;
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+}
 
     /* === HERO === */
     header.hero {
@@ -435,16 +476,22 @@
 </head>
 <body>
 
-  <nav>
-    <div class="logo" aria-label="Law and Justice Firm Logo">Law & Justice</div>
-    <ul role="list">
-      <li><a href="#about" tabindex="0">About</a></li>
-      <li><a href="#services" tabindex="0">Services</a></li>
-      <li><a href="#team" tabindex="0">Team</a></li>
-      <li><a href="#testimonials" tabindex="0">Testimonials</a></li>
-      <li><a href="#contact" tabindex="0">Contact</a></li>
-    </ul>
-  </nav>
+ <nav>
+  <div class="logo">Law & Justice</div>
+  
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    &#9776;
+  </button>
+
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
 
   <header class="hero" role="banner">
     <h1 data-aos="fade-down" data-aos-duration="1500">Justice Starts With Just One Step. Take That Step With Us.</h1>
@@ -608,7 +655,20 @@
       event.target.reset();
     }
   </script>
+  <script>
+  const toggleBtn = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  toggleBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+    
+    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', !isExpanded);
+  });
+</script>
+
 </body>
 </html>
+
 
 
