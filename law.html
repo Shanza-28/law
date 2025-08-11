@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Law & Justice - Premier Legal Counsel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    /* === RESET === */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #0a0a0a;
+      color: #f0e6d2;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    a {
+      color: #d4af37;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #fff;
+    }
+    /* === NAVBAR === */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #121212cc;
+      backdrop-filter: saturate(180%) blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #d4af37;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      font-weight: 500;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    /* === HERO === */
+    header.hero {
+      background: url('https://thumbs.dreamstime.com/b/law-layer-seal-illustration-design-lawyers-firms-could-be-used-as-logo-striking-reflective-gold-black-38663883.jpg') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 2rem;
+      position: relative;
+      color: #d4af37;
+      filter: drop-shadow(0 0 6px #d4af37);
+    }
+    header.hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.85);
+      z-index: 0;
+    }
+    header.hero > * {
+      position: relative; z-index: 1;
+      max-width: 900px;
+    }
+    header.hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 15px #d4af37aa;
+      line-height: 1.1;
+    }
+    header.hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      text-shadow: 0 0 12px #d4af37cc;
+    }
+    header.hero .btn-primary {
+      font-size: 1.1rem;
+      padding: 0.85rem 2.4rem;
+      border: 2.5px solid #d4af37;
+      border-radius: 50px;
+      background: transparent;
+      color: #d4af37;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      box-shadow: 0 0 15px #d4af37aa;
+    }
+    header.hero .btn-primary:hover {
+      background-color: #d4af37;
+      color: #0a0a0a;
+      box-shadow: 0 0 25px #fff;
+    }
+
+    /* === SECTIONS COMMON === */
+    section {
+      max-width: 1100px;
+      margin: 6rem auto 4rem;
+      padding: 0 2rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #d4af37;
+      text-shadow: 0 0 8px #d4af37cc;
+    }
+    .section-subtitle {
+      max-width: 650px;
+      margin: 0 auto 3rem auto;
+      font-size: 1.2rem;
+      text-align: center;
+      font-weight: 300;
+      color: #ccc;
+      line-height: 1.7;
+    }
+
+    /* === ABOUT US === */
+    #about p {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #eee;
+      line-height: 1.8;
+    }
+    #about p strong {
+      color: #d4af37;
+    }
+
+    /* === SERVICES === */
+    #services .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2.5rem;
+    }
+    .service-card {
+      background: #121212;
+      border: 1.5px solid #d4af37;
+      border-radius: 12px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 0 20px #d4af3755;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 40px #d4af37cc;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #d4af37;
+      text-shadow: 0 0 6px #d4af37bb;
+    }
+    .service-card p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+      line-height: 1.5;
+    }
+    .service-stat {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #bfa640;
+      letter-spacing: 1px;
+    }
+
+    /* === TEAM === */
+    #team .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 3rem;
+    }
+    .lawyer-card {
+      background: #121212;
+      border: 1.5px solid #d4af37;
+      border-radius: 14px;
+      padding: 2rem 1.5rem 2.5rem;
+      box-shadow: 0 0 25px #d4af3755;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .lawyer-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 50px #d4af37cc;
+    }
+    .lawyer-card img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3.5px solid #d4af37;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 0 20px #d4af37aa;
+      filter: drop-shadow(0 0 3px #d4af37);
+    }
+    .lawyer-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+      color: #d4af37;
+      text-shadow: 0 0 8px #d4af37cc;
+    }
+    .lawyer-card p.role {
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #e0cc7a;
+      font-style: italic;
+    }
+    .lawyer-card p.bio {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #eee;
+      line-height: 1.5;
+      max-height: 7.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .lawyer-card p.bio::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1.5rem;
+      background: linear-gradient(180deg, transparent, #121212);
+    }
+
+    /* === TESTIMONIALS === */
+    #testimonials {
+      background: #121212dd;
+      border-top: 3px solid #d4af37;
+      border-bottom: 3px solid #d4af37;
+      padding: 4rem 2rem 6rem;
+    }
+    #testimonials .section-title {
+      color: #d4af37;
+      text-shadow: 0 0 8px #d4af37cc;
+    }
+    .testimonial-slider {
+      max-width: 800px;
+      margin: 2rem auto 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 0 30px #d4af3755;
+    }
+    .testimonial-slide {
+      color: #f0e6d2;
+      padding: 3rem 3.5rem;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      background: #0a0a0a;
+      min-height: 180px;
+      display: none;
+      user-select: none;
+    }
+    .testimonial-slide.active {
+      display: block;
+      animation: fadeIn 1s ease forwards;
+    }
+    .testimonial-author {
+      margin-top: 1.5rem;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 1rem;
+      color: #d4af37;
+      text-shadow: 0 0 6px #d4af37cc;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(15px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    /* testimonial nav */
+    .testimonial-nav {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .testimonial-nav button {
+      background: #d4af37;
+      border: none;
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+      margin: 0 8px;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+    .testimonial-nav button.active {
+      opacity: 1;
+      box-shadow: 0 0 12px #d4af37cc;
+    }
+
+    /* === CONTACT === */
+    #contact {
+      max-width: 800px;
+      margin: 6rem auto 4rem;
+      padding: 0 2rem;
+    }
+    #contact h2.section-title {
+      margin-bottom: 1.5rem;
+    }
+    #contact p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      color: #ddd;
+      text-align: center;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    form.contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    form.contact-form input,
+    form.contact-form textarea {
+      padding: 0.9rem 1.1rem;
+      border-radius: 6px;
+      border: 1.5px solid #d4af37;
+      background: #0a0a0a;
+      color: #f0e6d2;
+      font-size: 1rem;
+      font-weight: 300;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    form.contact-form input:focus,
+    form.contact-form textarea:focus {
+      outline: none;
+      border-color: #fff;
+      box-shadow: 0 0 8px #d4af37cc;
+    }
+    form.contact-form button {
+      background-color: #d4af37;
+      color: #0a0a0a;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      padding: 0.85rem 2.5rem;
+      cursor: pointer;
+      align-self: center;
+      transition: background-color 0.3s ease;
+    }
+    form.contact-form button:hover {
+      background-color: #fff;
+    }
+    /* MAP */
+    #map {
+      margin-top: 3rem;
+      border-radius: 14px;
+      overflow: hidden;
+      height: 320px;
+      box-shadow: 0 0 30px #d4af3755;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: #121212;
+      padding: 3rem 2rem 3rem;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #aaa;
+      user-select: none;
+      border-top: 2px solid #d4af37;
+      margin-top: 6rem;
+    }
+    footer a {
+      color: #d4af37;
+      font-weight: 500;
+    }
+
+    /* === MEDIA QUERIES === */
+    @media (max-width: 768px) {
+      header.hero h1 {
+        font-size: 2.4rem;
+      }
+      header.hero p {
+        font-size: 1.1rem;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+      #services .services-grid,
+      #team .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo" aria-label="Law and Justice Firm Logo">Law & Justice</div>
+    <ul role="list">
+      <li><a href="#about" tabindex="0">About</a></li>
+      <li><a href="#services" tabindex="0">Services</a></li>
+      <li><a href="#team" tabindex="0">Team</a></li>
+      <li><a href="#testimonials" tabindex="0">Testimonials</a></li>
+      <li><a href="#contact" tabindex="0">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" role="banner">
+    <h1 data-aos="fade-down" data-aos-duration="1500">Justice Starts With Just One Step. Take That Step With Us.</h1>
+    <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">Your trusted legal partner blending experience, passion, and relentless dedication.</p>
+    <button class="btn-primary" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="700" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a Consultation</button>
+  </header>
+
+  <main>
+
+    <section id="about" aria-label="About Law & Justice Firm">
+      <h2 class="section-title" data-aos="fade-up">About Us</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+        At <strong>Law & Justice</strong>, we combine over 50 years of collective legal expertise to serve our clients with integrity and excellence. Founded on the principles of fairness and justice, our mission is to provide personalized, transparent legal counsel tailored to your unique needs.<br /><br />
+        From corporate law to criminal defense and family matters, our attorneys bring passion and precision to every case, building a legacy of success and trust across multiple jurisdictions.
+      </p>
+    </section>
+
+    <section id="services" aria-label="Legal Services Offered">
+      <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+      <div class="services-grid">
+        <article class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <h3>Corporate Law</h3>
+          <p>Expert consulting on business formation, contracts, mergers, compliance, and dispute resolution. Guiding companies from startups to multinationals.</p>
+          <div class="service-stat">Over 200 successful mergers and acquisitions</div>
+        </article>
+        <article class="service-card" data-aos="fade-up" data-aos-delay="250">
+          <h3>Criminal Defense</h3>
+          <p>Dedicated defense strategies in state and federal courts. Proven record with over 350 acquittals and favorable plea bargains.</p>
+          <div class="service-stat">98% success rate in criminal defense cases</div>
+        </article>
+        <article class="service-card" data-aos="fade-up" data-aos-delay="400">
+          <h3>Family Law</h3>
+          <p>Compassionate guidance through divorce, child custody, adoption, and mediation. Prioritizing your family’s future with respect and discretion.</p>
+          <div class="service-stat">100+ successful custody agreements</div>
+        </article>
+        <article class="service-card" data-aos="fade-up" data-aos-delay="550">
+          <h3>Immigration Law</h3>
+          <p>Comprehensive support for visas, citizenship, appeals, and deportation defense. Empowering dreams with thorough knowledge and care.</p>
+          <div class="service-stat">Trusted by over 500 clients worldwide</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="team" aria-label="Meet Our Legal Team">
+      <h2 class="section-title" data-aos="fade-up">Our Esteemed Team</h2>
+      <div class="team-grid">
+
+        <article class="lawyer-card" data-aos="flip-left" data-aos-delay="100">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZlOchkUmhPHTwVy5_OOe3na5lVfCW1VAhZw&s" alt="Photo of Zumar Yousaf" loading="lazy" />
+          <h3>Zumar Yousaf</h3>
+          <p class="role">Qualified Barrister from Lincoln's Inn, UK & Practicing Advocate High Court, Pakistan</p>
+          <p class="bio">
+            Zumar Yousaf combines British barrister expertise with Pakistani legal acumen. Renowned for his sharp legal strategy and integrity, he has successfully represented landmark cases that shaped corporate law in Pakistan. His passion for justice fuels every courtroom battle.
+          </p>
+        </article>
+
+        <article class="lawyer-card" data-aos="flip-left" data-aos-delay="300">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn4m22hdmgd_IIcnYQShhxhzF9-jnEPa-j8Q&s" alt="Photo of Saqib Jillani" loading="lazy" />
+          <h3>Saqib Jillani</h3>
+          <p class="role">Prominent Lawyer from Lahore, Nationally Recognized</p>
+          <p class="bio">
+            Saqib Jillani is a legal powerhouse in Lahore, dedicated to upholding justice and making the nation proud. His courtroom prowess and commitment to ethical practice have earned him numerous accolades. Saqib champions social justice causes while delivering impeccable defense.
+          </p>
+        </article>
+
+        <article class="lawyer-card" data-aos="flip-left" data-aos-delay="500">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk8LyautmGPO7hLzudRXeaCcPCw_k7-9JD2A&s" alt="Photo of Hashim Kardar" loading="lazy" />
+          <h3>Hashim Kardar</h3>
+          <p class="role">Veteran Advocate with Strategic Legal Insight</p>
+          <p class="bio">
+            Hashim Kardar's decades of advocacy are marked by his strategic approach and success in complex cases. He’s respected for his analytical mind and unwavering client commitment. Hashim has guided many high-profile cases to victory through meticulous preparation and eloquent argument.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="testimonials" aria-label="Client Testimonials">
+      <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
+      <div class="testimonial-slider" aria-live="polite" aria-atomic="true">
+
+        <blockquote class="testimonial-slide active" tabindex="0">
+          "Law & Justice saved my business when facing a major lawsuit. Their professionalism and attention to detail were unmatched."
+          <footer class="testimonial-author">— Fatima R., CEO</footer>
+        </blockquote>
+
+        <blockquote class="testimonial-slide" tabindex="0">
+          "The team guided me through a difficult custody battle with empathy and expertise. I felt supported every step of the way."
+          <footer class="testimonial-author">— Ahmed S., Client</footer>
+        </blockquote>
+
+        <blockquote class="testimonial-slide" tabindex="0">
+          "Fast, reliable, and knowledgeable. The best legal team I’ve ever worked with."
+          <footer class="testimonial-author">— Sana K., Entrepreneur</footer>
+        </blockquote>
+
+      </div>
+
+      <div class="testimonial-nav" role="tablist" aria-label="Testimonial navigation">
+        <button aria-label="Testimonial 1" class="active" role="tab" aria-selected="true"></button>
+        <button aria-label="Testimonial 2" role="tab" aria-selected="false"></button>
+        <button aria-label="Testimonial 3" role="tab" aria-selected="false"></button>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="Contact Law & Justice Firm">
+      <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+      <p data-aos="fade-up" data-aos-delay="150">Ready to discuss your case? Reach out for a confidential consultation with our expert legal team.</p>
+
+      <form class="contact-form" aria-label="Contact form" data-aos="fade-up" data-aos-delay="300" onsubmit="submitForm(event)">
+        <input type="text" name="name" placeholder="Your Full Name" aria-required="true" required />
+        <input type="email" name="email" placeholder="Your Email Address" aria-required="true" required />
+        <textarea name="message" rows="5" placeholder="Describe your inquiry" aria-required="true" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <div id="map" data-aos="fade-up" data-aos-delay="400" aria-label="Office Location Map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.577470935789!2d74.35638851516997!3d31.580227681377563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919053ae676511f%3A0x5c602d43ddafc1f3!2sLahore%20High%20Court!5e0!3m2!1sen!2s!4v1692050329407!5m2!1sen!2s"
+          width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Lahore High Court Location">
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Law & Justice. All rights reserved. | Designed by Your Firm’s Legal Team
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 900,
+      easing: 'ease-in-out',
+    });
+
+    // Simple testimonial slider
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const navButtons = document.querySelectorAll('.testimonial-nav button');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+        navButtons[i].classList.toggle('active', i === index);
+        navButtons[i].setAttribute('aria-selected', i === index ? 'true' : 'false');
+      });
+      currentIndex = index;
+      slides[index].focus();
+    }
+
+    navButtons.forEach((btn, i) => {
+      btn.addEventListener('click', () => showSlide(i));
+    });
+
+    function submitForm(event) {
+      event.preventDefault();
+      alert('Thank you for contacting Law & Justice. We will get back to you shortly!');
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
+
+
