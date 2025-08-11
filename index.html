@@ -82,12 +82,17 @@
   .nav-links {
     position: absolute;
     top: 64px;
-    left: 0;
-    width: 100%;
+    right: 2rem;
+    width: 220px; /* ⬅️ Limited width */
     background-color: #1c1c1c;
     flex-direction: column;
-    overflow: hidden;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
     z-index: 999;
   }
 
@@ -96,10 +101,18 @@
   }
 
   .nav-links li {
-    margin: 1rem 0;
-    text-align: center;
+    margin: 0.75rem 0;
+    width: 100%;
+  }
+
+  .nav-links li a {
+    display: block;
+    width: 100%;
+    color: white;
+    padding: 0.5rem 0;
   }
 }
+
 
     /* === HERO === */
     header.hero {
@@ -655,20 +668,41 @@
       event.target.reset();
     }
   </script>
+
   <script>
   const toggleBtn = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
 
-  toggleBtn.addEventListener('click', () => {
+  // Toggle menu on hamburger click
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent bubbling up
     navLinks.classList.toggle('show');
-    
+
     const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
     toggleBtn.setAttribute('aria-expanded', !isExpanded);
   });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('show') && !navLinks.contains(e.target)) {
+      navLinks.classList.remove('show');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Optional: Close menu when clicking a nav link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('show');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
 </script>
+
 
 </body>
 </html>
+
 
 
 
