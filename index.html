@@ -578,7 +578,7 @@
 
         <article class="lawyer-card" data-aos="flip-left" data-aos-delay="500">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk8LyautmGPO7hLzudRXeaCcPCw_k7-9JD2A&s" alt="Photo of Hashim Kardar" loading="lazy" />
-          <h3>Hashim Kardar</h3>
+          <h3>Qazi Faiz Esa</h3>
           <p class="role">Veteran Advocate with Strategic Legal Insight</p>
           <p class="bio">
             Hashim Kardar's decades of advocacy are marked by his strategic approach and success in complex cases. He’s respected for his analytical mind and unwavering client commitment. Hashim has guided many high-profile cases to victory through meticulous preparation and eloquent argument.
@@ -703,11 +703,25 @@
       toggleBtn.setAttribute('aria-expanded', 'false');
     });
   });
+    document.addEventListener('click', (e) => {
+  if (navLinks.classList.contains('show') && !navLinks.contains(e.target)) {
+    navLinks.classList.remove('show');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('show');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+
 </script>
 
 
 </body>
 </html>
+
 
 
 
